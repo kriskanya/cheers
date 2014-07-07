@@ -9,7 +9,7 @@
 #
 # Note: the “a” vs. “an”
 
-
+require 'date'
 
 puts "What's your name?"
 name = gets.chomp.downcase
@@ -26,3 +26,27 @@ name.each_char do |char|
     puts "Give me a... #{char}"
   end
 end
+
+puts "#{name.upcase}'s just GRAND!"
+
+puts "Hey #{name}, what's your birthday?  Use format YY/MM/DD"
+# gets the birthday from the user
+birthday = gets
+birthday = Date.parse(birthday)
+today = Date.today
+today = Date.new(today.year, today.month, today.day)
+puts "today"
+puts today
+# changes the year of the user's birthday to the current year, so you can calculate the days
+bdate = Date.new(today.year, birthday.month, birthday.day)
+
+puts "bdate"
+puts bdate
+
+diff = (bdate - today).to_i
+  if diff < 0
+    bdayNew = Date.new((today.year + 1), bdate.month, bdate.day)
+    diff = (bdayNew - today).to_i
+end
+
+puts "Awesome! Your birthday is in #{diff} days! Happy Birthday in advance!"
